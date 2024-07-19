@@ -1,13 +1,16 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
+import { addContact } from "../redux/contactsSlice";
+import { useDispatch } from "react-redux";
+import { useId } from "react";
 
-export default function ContactForm({ addContact }) {
-  const handleSubmit = (values, actions) => {
-    console.log(values);
-    addContact(values.name, values.number);
-    actions.resetForm();
-  };
+export default function ContactForm() {
+  // const handleSubmit = (values, actions) => {
+  //   console.log(values);
+  //   addContact(values.name, values.number);
+  //   actions.resetForm();
+  // };
 
   const FeedbackShema = Yup.object().shape({
     name: Yup.string()
@@ -20,6 +23,17 @@ export default function ContactForm({ addContact }) {
       .required("Required"),
   });
 
+  const nameFieldId = useId();
+  const numberFieldId = useId();
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    dispatch(addContact(values));
+    actions.setSubmitting(false);
+    actions.resetForm();
+  };
+
   return (
     <Formik
       initialValues={{ name: "", number: "" }}
@@ -28,17 +42,23 @@ export default function ContactForm({ addContact }) {
     >
       <Form className={css.container}>
         <div className={css.form}>
-          <label htmlFor="name">Name</label>
-          <Field type="text" name="name" />
+          <label className={css.name} htmlFor={nameFieldId}>
+            Name
+          </label>
+          <Field type="text" name="name" className={css.field} />
           <ErrorMessage className={css.error} name="name" component="span" />
         </div>
         <div className={css.form}>
-          <label htmlFor="number">Number</label>
-          <Field type="text" name="number" />
+          <label className={css.name} htmlFor={numberFieldId}>
+            Number
+          </label>
+          <Field type="text" name="number" className={css.field} />
           <ErrorMessage className={css.error} name="number" component="span" />
         </div>
 
-        <button type="submit">Add contact</button>
+        <button className={css.btn} type="submit">
+          Add contact
+        </button>
       </Form>
     </Formik>
   );

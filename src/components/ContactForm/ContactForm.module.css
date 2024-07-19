@@ -1,13 +1,14 @@
 .container {
     max-width: 300px;
-    border: 2px solid black;
+    border: 2px solid rgb(53, 23, 185);
     border-radius: 5px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     padding: 10px;
     align-items: center;
+
 }
 
 .form {
@@ -16,6 +17,22 @@
     width: 280px;
 }
 
+.field {
+    border-radius: 3px;
+    border: 2px solid rgb(16, 16, 194);
+}
+
+.name {
+    color: rgb(72, 69, 48);
+}
+
+.btn {
+    border: 2px solid rgb(11, 11, 189);
+    border-radius: 3px;
+    background-color: #848eb2;
+}
+
 .error {
     color: red;
+
 }
