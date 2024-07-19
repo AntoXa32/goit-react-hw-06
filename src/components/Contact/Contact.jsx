@@ -3,7 +3,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../redux/contactsSlice";
+import { deleteContact } from "../../redux/contactsSlice";
 
 export default function Contact({ id, number, name }) {
   const dispatch = useDispatch();

@@ -1,17 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
-import { addContact } from "../redux/contactsSlice";
+import { addContact } from "../../redux/contactsSlice";
 import { useDispatch } from "react-redux";
 import { useId } from "react";
 
 export default function ContactForm() {
-  // const handleSubmit = (values, actions) => {
-  //   console.log(values);
-  //   addContact(values.name, values.number);
-  //   actions.resetForm();
-  // };
-
   const FeedbackShema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too Short!")
